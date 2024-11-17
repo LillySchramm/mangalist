@@ -20,7 +20,7 @@
                         class="m-0.5 !inline-table rounded-full bg-secondary p-0.5 opacity-70"
                         [ngClass]="
                             book.favorite
-                                ? '!bg-opacity-0 text-warn opacity-90 shadow-warn shadow-2xl'
+                                ? '!bg-opacity-0 text-warn opacity-90 shadow-2xl shadow-warn'
                                 : ''
                         "
                         >favorite</mat-icon
@@ -49,7 +49,7 @@
 
                     @if (book.hidden) {
                         <mat-icon
-                            class="m-0.5 !inline-table rounded-full  bg-secondary p-0.5"
+                            class="m-0.5 !inline-table rounded-full bg-secondary p-0.5"
                             [matTooltip]="t('book.hidden')"
                             >visibility_off</mat-icon
                         >
@@ -59,7 +59,7 @@
                 @if (isNewBook(book)) {
                     <mat-icon
                         [matTooltip]="t('book.new')"
-                        class="m-0.5 !inline-table rounded-full  text-warn  p-0.5 opacity-100"
+                        class="m-0.5 !inline-table rounded-full p-0.5 text-warn opacity-100"
                         >fiber_new</mat-icon
                     >
                 }

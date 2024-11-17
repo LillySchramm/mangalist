@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TranslocoModule } from '@ngneat/transloco';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Select, Store } from '@ngxs/store';
@@ -40,6 +41,7 @@ import { ChipFilterComponent } from '../../components/chip-filter/chip-filter.co
         MatDialogModule,
         AddBookDialogComponent,
         ChipFilterComponent,
+        MatSlideToggleModule,
     ],
     templateUrl: './collection.component.html',
     styleUrls: ['./collection.component.scss'],
@@ -174,6 +176,10 @@ export class CollectionComponent {
         );
 
         this.store.dispatch(new BookActions.SetPublisherFilter(publisherIds));
+    }
+
+    setRecentFilter(recent: boolean) {
+        this.store.dispatch(new BookActions.SetRecentFilter(recent));
     }
 
     openAddBookDialog() {

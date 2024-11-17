@@ -78,7 +78,8 @@
     "author": "Author",
     "add-author": "Add Author",
     "language": "Language",
-    "add-language": "Add language"
+    "add-language": "Add language",
+    "recent": "Recent Additions"
   },
   "book-groups": {
     "unknown": "Unassigned",

@@ -33,6 +33,9 @@
             [items]="$languageNames() || []"
             (itemsChange)="setLanguageFilter($event)"
         ></app-chip-filter>
+        <mat-slide-toggle (change)="setRecentFilter($event.checked)">{{
+            t('collection.recent')
+        }}</mat-slide-toggle>
     </form>
     <div class="flex-grow"></div>
     @if ($currentUser()?.id === $currentOwnerId()) {

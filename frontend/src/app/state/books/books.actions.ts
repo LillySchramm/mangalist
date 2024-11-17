@@ -108,6 +108,11 @@ export namespace BookActions {
         constructor(public languageIds: string[]) {}
     }
 
+    export class SetRecentFilter {
+        static readonly type = '[Books] Set Recent Filter';
+        constructor(public recent: boolean) {}
+    }
+
     export class UpdateBookVisibility {
         static readonly type = '[Books] Update Book Visibility';
         constructor(

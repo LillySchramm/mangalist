@@ -45,6 +45,7 @@ interface BookStateModel {
     authorFilter?: string[];
     publisherFilter?: string[];
     languageFilter?: string[];
+    recentFilter: boolean;
 }
 
 @State<BookStateModel>({
@@ -55,6 +56,7 @@ interface BookStateModel {
         searchLoading: false,
         ownershipChangeLoading: false,
         selectedFavorite: false,
+        recentFilter: false,
         bookMap: {},
     },
 })
@@ -369,6 +371,16 @@ export class BooksState {
         });
     }
 
+    @Action(BookActions.SetRecentFilter)
+    setRecentFilter(
+        { patchState }: StateContext<BookStateModel>,
+        { recent }: BookActions.SetRecentFilter,
+    ) {
+        patchState({
+            recentFilter: recent,
+        });
+    }
+
     @Action(BookActions.UpdateBookVisibility)
     updateBookVisibility(
         { getState, dispatch, patchState }: StateContext<BookStateModel>,
@@ -579,6 +591,11 @@ export class BooksState {
     @Selector()
     static languageFilter(state: BookStateModel) {
         return state.languageFilter;
+    }
+
+    @Selector()
+    static recentFilter(state: BookStateModel) {
+        return state.recentFilter;
     }
 
     @Selector()
