@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { AuthGuard } from './common/guards/auth.guard';
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -49,10 +49,9 @@ const routes: Routes = [
     },
     {
         path: 'u/:name',
-        loadComponent: () =>
-            import('./pages/user-collection/user-collection.component').then(
-                (m) => m.UserCollectionComponent,
-            ),
+        redirectTo: (data) => {
+            return '/@' + data.params['name'];
+        },
         data: { providesFooter: true },
     },
     {
@@ -82,6 +81,25 @@ const routes: Routes = [
             import('./pages/licenses/licenses.component').then(
                 (m) => m.LicensesComponent,
             ),
+    },
+    {
+        matcher: (url) => {
+            if (url.length !== 1 && !url[0].path.includes('@')) {
+                return null;
+            }
+
+            return {
+                consumed: url,
+                posParams: {
+                    name: new UrlSegment(url[0].path.replace('@', ''), {}),
+                },
+            };
+        },
+        loadComponent: () =>
+            import('./pages/user-collection/user-collection.component').then(
+                (m) => m.UserCollectionComponent,
+            ),
+        data: { providesFooter: true },
     },
     {
         path: '**',

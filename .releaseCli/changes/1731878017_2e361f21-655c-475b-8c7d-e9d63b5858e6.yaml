@@ -1,0 +1,7 @@
+id: 2e361f21-655c-475b-8c7d-e9d63b5858e6
+title: The '/u/<username>' syntax for collection URLs has been removed. Old links will be automagically redirected to the new schema..
+type: 3
+description: ""
+breaking: false
+breaking_migration_guide: ""
+timestamp: 1731878017
