@@ -126,7 +126,7 @@
       "visibility": "Visibility",
       "password": "Password",
       "sessions": "Sessions",
-      "emails": "EMails"
+      "emails": "E-Mails"
     },
     "subtitles": {
       "export": "Request a full export of the data we hold about your account in compliance with GDRP.",
@@ -134,7 +134,7 @@
       "visibility": "Decide if other users should be able to see your collection or if you want to keep it for yourself.",
       "password": "Changing your password will sign you out on all devices you are currently logged in on!",
       "sessions": "Manage where you are logged in.",
-      "emails": "Chose which EMails you want to receive from us."
+      "emails": "Chose which E-Mails you want to receive from us."
     },
     "buttons": {
       "export": "Request Export",
