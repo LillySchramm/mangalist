@@ -23,7 +23,7 @@ variables:
     policy: pull
 
 install_npm_dependencies:
-    image: ${DOCKER_CACHE}/node:18
+    image: ${DOCKER_CACHE}/node:22
     stage: pre-build
     cache:
         <<: *npm-cache
@@ -57,7 +57,7 @@ generate_public_licenses:
         - license-checker-rseidelsohn --production --json --out ../frontend/src/assets/licenses/frontend_licenses.json --customPath /format.json
 
 check_licenses:
-    image: ${DOCKER_CACHE}/node:18-alpine
+    image: ${DOCKER_CACHE}/node:22-alpine
     stage: audit
     artifacts:
         untracked: false
@@ -96,7 +96,7 @@ sonarqube_check:
     - v2
 
 build_backend:
-    image: ${DOCKER_CACHE}/node:18
+    image: ${DOCKER_CACHE}/node:22
     stage: build
     needs:
         - install_npm_dependencies
@@ -113,7 +113,7 @@ build_backend:
         - yarn run build
 
 build_frontend:
-    image: ${DOCKER_CACHE}/node:18
+    image: ${DOCKER_CACHE}/node:22
     stage: build
     needs:
         - install_npm_dependencies
@@ -130,7 +130,7 @@ build_frontend:
         - npm run build
 
 build_docs:
-    image: ${DOCKER_CACHE}/node:18
+    image: ${DOCKER_CACHE}/node:22
     stage: build
     needs:
         - install_npm_dependencies
@@ -200,7 +200,7 @@ build_docs_container:
 
 
 api_test:
-    image: ${DOCKER_CACHE}/node:18
+    image: ${DOCKER_CACHE}/node:22
     stage: test
     except:
         - tags
@@ -234,7 +234,7 @@ api_test:
         - yarn run test
 
 backend_prettier:
-    image: ${DOCKER_CACHE}/node:18-alpine
+    image: ${DOCKER_CACHE}/node:22-alpine
     stage: linting
     needs:
         - install_npm_dependencies
@@ -245,7 +245,7 @@ backend_prettier:
         - yarn run format:check
 
 backend_lint:
-    image: ${DOCKER_CACHE}/node:18-alpine
+    image: ${DOCKER_CACHE}/node:22-alpine
     stage: linting
     needs:
         - install_npm_dependencies
@@ -256,7 +256,7 @@ backend_lint:
         - yarn run lint
 
 frontend_prettier:
-    image: ${DOCKER_CACHE}/node:18-alpine
+    image: ${DOCKER_CACHE}/node:22-alpine
     stage: linting
     needs:
         - install_npm_dependencies
@@ -267,7 +267,7 @@ frontend_prettier:
         - yarn run format:check
 
 frontend_lint:
-    image: ${DOCKER_CACHE}/node:18-alpine
+    image: ${DOCKER_CACHE}/node:22-alpine
     stage: linting
     needs:
         - install_npm_dependencies

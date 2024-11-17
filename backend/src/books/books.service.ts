@@ -16,7 +16,6 @@ import {
 } from '@prisma/client';
 import { Retryable } from 'typescript-retry-decorator';
 import { TesseractService } from 'src/tesseract/tesseract.service';
-import { Magic } from 'mmmagic';
 import { BookWithGroupIdAndAuthors } from './dto/book.dto';
 import { AuthorsService } from 'src/authors/authors.service';
 import { PublishersService } from 'src/publishers/publishers.service';
@@ -24,6 +23,7 @@ import { BookGroupingService } from 'src/book-groups/bookGrouping.service';
 import { Scraper } from './scraper/scraper';
 import { LokiLogger } from 'src/loki/loki-logger/loki-logger.service';
 import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
+import { Magic } from 'mmmagic';
 
 @Injectable()
 export class BooksService implements OnModuleInit {
