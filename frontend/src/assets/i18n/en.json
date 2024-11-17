@@ -192,7 +192,8 @@
     "group-all": "Include All In Grouping",
     "ungroup-all": "Do Not Group Any",
     "remove": "Remove Book",
-    "share": "Share Book"
+    "share": "Share Book",
+    "new": "This books was added recently"
   },
   "book-overview": {
     "book-not-known": "This book has not been scanned by anyone yet"

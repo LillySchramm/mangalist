@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -12,7 +11,7 @@ import { UserActions } from 'src/app/state/user/user.actions';
 @Component({
     selector: 'app-licenses',
     standalone: true,
-    imports: [MatTabsModule, TranslocoModule, LicenseItemComponent, NgFor],
+    imports: [MatTabsModule, TranslocoModule, LicenseItemComponent],
     templateUrl: './licenses.component.html',
     styleUrl: './licenses.component.scss',
 })

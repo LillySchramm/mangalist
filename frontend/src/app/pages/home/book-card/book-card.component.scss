@@ -1,0 +1,7 @@
+.new:not(.selected) {
+    background: linear-gradient(90deg, #bb8d05 0%, #c97901 100%);
+}
+
+.new {
+    transition-duration: 0ms;
+}

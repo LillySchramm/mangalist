@@ -137,4 +137,8 @@ export class BookCardComponent implements OnInit {
             this.transloco.translate('common.ok'),
         );
     }
+
+    isNewBook(book: BookDto): boolean {
+        return this.ui.isNewBook(book);
+    }
 }

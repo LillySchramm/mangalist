@@ -1,7 +1,8 @@
 <div
     class="m-1 flex h-40 w-28 cursor-pointer flex-col rounded-md bg-tertiary p-1 pb-0.5 transition duration-100 sm:h-48 sm:w-32 sm:p-2 md:h-52 md:w-36"
     [ngClass]="{
-        '!bg-accent':
+        new: isNewBook(book),
+        'selected !bg-accent':
             $selectedBook()?.isbn === book.isbn &&
             favorite === $selectedFavorite(),
     }"
@@ -19,7 +20,7 @@
                         class="m-0.5 !inline-table rounded-full bg-secondary p-0.5 opacity-70"
                         [ngClass]="
                             book.favorite
-                                ? '!bg-opacity-0 text-warn opacity-90'
+                                ? '!bg-opacity-0 text-warn opacity-90 shadow-warn shadow-2xl'
                                 : ''
                         "
                         >favorite</mat-icon
@@ -27,10 +28,10 @@
                 }
             </div>
         </div>
-        <div class="mr-4 flex justify-end p-1 opacity-70">
+        <div class="mr-4 flex justify-end p-1">
             @if (showFlags) {
                 <div
-                    class="flex flex-col"
+                    class="flex flex-col opacity-70"
                     [matMenuTriggerFor]="menu"
                     (click)="$event.stopPropagation()"
                 >
@@ -48,12 +49,20 @@
 
                     @if (book.hidden) {
                         <mat-icon
-                            class="m-0.5 !inline-table rounded-full bg-secondary p-0.5"
+                            class="m-0.5 !inline-table rounded-full  bg-secondary p-0.5"
                             [matTooltip]="t('book.hidden')"
                             >visibility_off</mat-icon
                         >
                     }
                 </div>
+            } @else {
+                @if (isNewBook(book)) {
+                    <mat-icon
+                        [matTooltip]="t('book.new')"
+                        class="m-0.5 !inline-table rounded-full  text-warn  p-0.5 opacity-100"
+                        >fiber_new</mat-icon
+                    >
+                }
             }
         </div>
     </div>

@@ -30,4 +30,5 @@ export interface BookDto {
     hidden: boolean;
     noGroup: boolean;
     favorite: boolean;
+    ownedSince: string;
 }
