@@ -18,7 +18,7 @@ import {
     RecaptchaComponent,
     RecaptchaFormsModule,
     RecaptchaModule,
-} from 'ng-recaptcha';
+} from 'ng-recaptcha-2';
 import { Observable } from 'rxjs';
 import { CaptchaDisclaimerComponent } from 'src/app/common/components/captcha-disclaimer/captcha-disclaimer.component';
 import { FormErrorPipe } from 'src/app/common/pipes/form-error.pipe';
