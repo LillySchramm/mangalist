@@ -1,4 +1,7 @@
-import { HttpClientModule } from '@angular/common/http';
+import {
+    provideHttpClient,
+    withInterceptorsFromDi,
+} from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -32,13 +35,13 @@ import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
     declarations: [AppComponent],
+    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         LazyLoadImageModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         ApiModule,
-        HttpClientModule,
         HeaderComponent,
         TranslocoRootModule,
         NgxsModule.forRoot([
@@ -86,9 +89,8 @@ import { TranslocoRootModule } from './transloco-root.module';
             deps: [TranslocoService, TokenService, ConfigService],
             multi: true,
         },
+        provideHttpClient(withInterceptorsFromDi()),
     ],
-
-    bootstrap: [AppComponent],
 })
 export class AppModule {}
 
