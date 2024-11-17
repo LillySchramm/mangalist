@@ -152,6 +152,7 @@ export class BooksService implements OnModuleInit {
                         hidden: true,
                         noGroup: true,
                         favorite: true,
+                        createdAt: true,
                     },
                 },
                 authors: {
@@ -394,6 +395,7 @@ export class BooksService implements OnModuleInit {
                         hidden: true,
                         noGroup: true,
                         favorite: true,
+                        createdAt: true,
                     },
                 },
                 authors: {
