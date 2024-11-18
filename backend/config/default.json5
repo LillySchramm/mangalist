@@ -85,6 +85,10 @@
             "enabled": true,
             "cron": "*/5 * * * * *"
         },
+        "updateAIClassifications": {
+            "enabled": true,
+            "cron": "*/2 * * * * *"
+        },
     },
     "legal": {
         "enabled": false,
@@ -111,5 +115,8 @@
             "enabled": false
         }
     },
-    "test_mode": false
+    "test_mode": false,
+    "openai": {
+        "key": ""
+    },
 }

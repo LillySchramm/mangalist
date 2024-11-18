@@ -60,6 +60,13 @@ export class BookDto implements BookWithGroupIdAndAuthors {
         createdAt: Date;
     }[];
 
+    @Exclude()
+    aiSuggestedSeries: string | null;
+    @Exclude()
+    aiSuggestedVolume: number | null;
+    @Exclude()
+    usedAiVersion: number | null;
+
     @ApiProperty({ type: String, nullable: true })
     @Expose()
     get groupId(): string | null {

@@ -4,6 +4,7 @@ import { BookGroupingService } from 'src/book-groups/bookGrouping.service';
 import { UsersService } from 'src/users/users.service';
 import { Cron } from 'src/cron/cron.service';
 import { LokiLogger } from 'src/loki/loki-logger/loki-logger.service';
+import { BookAiService } from './bookAi.service';
 
 @Injectable()
 export class BookTasksService {
@@ -13,6 +14,7 @@ export class BookTasksService {
         private bookService: BooksService,
         private bookGrouping: BookGroupingService,
         private userService: UsersService,
+        private bookAiService: BookAiService,
     ) {
         this.logger.log('BookTasksService initialized!');
     }
@@ -89,5 +91,18 @@ export class BookTasksService {
         }
 
         this.logger.log(`Recrawled info for book ${book.isbn}!`);
+    }
+
+    @Cron()
+    async updateAIClassifications() {
+        const isbns =
+            await this.bookAiService.updateOutdatedClassifications(10);
+
+        for (const isbn of isbns) {
+            const users = await this.userService.getAllUserIdsWithBook(isbn);
+            for (const userId of users) {
+                await this.bookGrouping.groupBooksOfUser(userId, true);
+            }
+        }
     }
 }

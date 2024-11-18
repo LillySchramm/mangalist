@@ -191,6 +191,18 @@
         ],
         type: "string",
     },
+    openai: {
+        "default": null,
+        description: "",
+        examples: [],
+        type: "object",
+    },
+    "openai.key": {
+        "default": "",
+        description: "Set to enable AI grouping",
+        examples: [],
+        type: "string",
+    },
     recaptcha: {
         "default": null,
         description: "Recaptcha is a service provided by Google which can be used to protect your server from bots. If you enable this service, the server will require the users to solve a captcha before they can register.",
@@ -510,6 +522,24 @@
         type: "string",
     },
     "tasks.tryFindCover.enabled": {
+        "default": true,
+        description: "",
+        examples: [],
+        type: "boolean",
+    },
+    "tasks.updateAIClassifications": {
+        "default": null,
+        description: "",
+        examples: [],
+        type: "object",
+    },
+    "tasks.updateAIClassifications.cron": {
+        "default": "*/2 * * * * *",
+        description: "",
+        examples: [],
+        type: "string",
+    },
+    "tasks.updateAIClassifications.enabled": {
         "default": true,
         description: "",
         examples: [],

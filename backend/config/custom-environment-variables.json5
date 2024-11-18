@@ -112,4 +112,7 @@
         "privacy_policy": "LEGAL_PRIVACY_POLICY",
         "terms_of_service": "LEGAL_TERMS_OF_SERVICE",
     },
+    "openai": {
+        "key": "OPENAI_KEY"
+    },
 }

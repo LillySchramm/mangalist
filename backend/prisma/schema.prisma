@@ -85,25 +85,30 @@ model Session {
 }
 
 model Book {
-  isbn             String            @id
+  isbn             String     @id
   title            String?
   subtitle         String?
   authors          Author[]
-  publisher        Publisher?        @relation(fields: [publisherId], references: [id])
+  publisher        Publisher? @relation(fields: [publisherId], references: [id])
   publishedDate    String?
   description      String?
   pageCount        Int?
   series           String?
   printedPageCount Int?
   language         String?
-  cover            BookCover?        @relation(fields: [bookCoverId], references: [id])
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  cover            BookCover? @relation(fields: [bookCoverId], references: [id])
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
   publisherId      String?
   bookCoverId      String?
   amazonLink       String?
-  OwnershipStatus  OwnershipStatus[]
-  BookFlags        BookFlags?
+
+  aiSuggestedSeries String?
+  aiSuggestedVolume Int?
+  usedAiVersion     Int?
+
+  OwnershipStatus OwnershipStatus[]
+  BookFlags       BookFlags?
 
   @@index([bookCoverId])
 }

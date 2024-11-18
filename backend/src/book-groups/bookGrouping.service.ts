@@ -139,7 +139,7 @@ export class BookGroupingService {
     }
 
     private getSeriesName(book: BookWithPublisherAndAuthors): string {
-        return book.series || '';
+        return book.series || book.aiSuggestedSeries || '';
     }
 
     private findSimilarGroupNames(

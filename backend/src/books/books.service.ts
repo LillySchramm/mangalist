@@ -453,4 +453,11 @@ export class BooksService implements OnModuleInit {
             data: { recrawlLongruning: value },
         });
     }
+
+    async resetUsedAIVersion(isbn: string) {
+        await this.prisma.book.update({
+            where: { isbn },
+            data: { usedAiVersion: 0 },
+        });
+    }
 }

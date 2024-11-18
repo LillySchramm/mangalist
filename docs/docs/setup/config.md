@@ -129,6 +129,11 @@ These are all the configuration options which can be set for the application.
 **Examples:**
 - `"smtps://username:password@smtp.example.com/?pool=true"`
 
+## openai
+**Type:** `object`
+### openai.key
+**Type:** `string`\
+**Description:** Set to enable AI grouping
 ## recaptcha
 **Type:** `object`\
 **Description:** Recaptcha is a service provided by Google which can be used to protect your server from bots. If you enable this service, the server will require the users to solve a captcha before they can register.
@@ -310,6 +315,14 @@ These are all the configuration options which can be set for the application.
 **Type:** `string`\
 **Default:** `"*/30 * * * * *"`
 #### tasks.tryFindCover.enabled
+**Type:** `boolean`\
+**Default:** `true`
+### tasks.updateAIClassifications
+**Type:** `object`
+#### tasks.updateAIClassifications.cron
+**Type:** `string`\
+**Default:** `"*/2 * * * * *"`
+#### tasks.updateAIClassifications.enabled
 **Type:** `boolean`\
 **Default:** `true`
 ### tasks.updateOutdatedGrouping

@@ -13,8 +13,9 @@ import { PublishersModule } from 'src/publishers/publishers.module';
 import { BookTasksService } from './book-tasks.service';
 import { Scraper } from './scraper/scraper';
 import { CacheModule } from '@nestjs/cache-manager';
+import { BookAiService } from './bookAi.service';
 @Module({
-    providers: [BooksService, BookTasksService, Scraper],
+    providers: [BooksService, BookAiService, BookTasksService, Scraper],
     controllers: [BooksController],
     imports: [
         S3Module,
@@ -28,6 +29,6 @@ import { CacheModule } from '@nestjs/cache-manager';
         PublishersModule,
         CacheModule.register(),
     ],
-    exports: [BookTasksService, BooksService],
+    exports: [BookTasksService, BooksService, BookAiService],
 })
 export class BooksModule {}
