@@ -5,6 +5,9 @@
             [formGroup]="form"
             class="flex w-full flex-row items-baseline gap-4 p-4 pb-0"
         >
+            <button mat-fab class="self-start" (click)="toggleScan()">
+                <mat-icon>qr_code_scanner</mat-icon>
+            </button>
             <mat-form-field color="accent" class="grow">
                 <mat-label>{{ t('add-book-dialog.isbn') }}</mat-label>
                 <input matInput type="text" formControlName="isbn" />
@@ -23,7 +26,7 @@
                 {{ t('add-book-dialog.search') }}
             </button>
         </form>
-        @if ($searchResult(); as book) {
+        @if (!doScan && $searchResult(); as book) {
             <app-book-details
                 [compact]="true"
                 class="inline-block max-h-[45vh] w-full overflow-scroll overflow-x-hidden"
@@ -32,20 +35,29 @@
         } @else {
             <div class="flex items-center">
                 <span class="mr-2 block h-0 flex-grow border"></span>
-                <span class="block">{{ t('add-book-dialog.app') }}</span>
-                <span class="ml-2 block h-0 flex-grow border"></span>
+                @if (!doScan) {
+                    <span class="block">{{ t('add-book-dialog.app') }}</span>
+                    <span class="ml-2 block h-0 flex-grow border"></span>
+                }
             </div>
             <div class="mt-4 flex justify-center">
-                <a
-                    href="https://play.google.com/store/apps/details?id=nexus.cdev.companion_app"
-                    target="_blank"
-                >
-                    <img
-                        src="assets/icon/google-play-badge-full.png"
-                        class="w-52"
-                        alt="Google Play Badge"
-                    />
-                </a>
+                <div
+                    id="qr-reader"
+                    style="width: 100%"
+                    [ngClass]="{ removed: !doScan }"
+                ></div>
+                @if (!doScan) {
+                    <a
+                        href="https://play.google.com/store/apps/details?id=nexus.cdev.companion_app"
+                        target="_blank"
+                    >
+                        <img
+                            src="assets/icon/google-play-badge-full.png"
+                            class="w-52"
+                            alt="Google Play Badge"
+                        />
+                    </a>
+                }
             </div>
         }
     </mat-dialog-content>
@@ -57,7 +69,7 @@
                     : ''
             "
         >
-            @if ($searchResult()) {
+            @if ($searchResult() && !doScan) {
                 <div class="flex flex-wrap justify-around sm:justify-start">
                     <button
                         mat-flat-button

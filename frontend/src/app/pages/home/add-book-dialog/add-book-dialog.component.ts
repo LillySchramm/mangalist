@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
@@ -9,11 +10,13 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslocoModule } from '@ngneat/transloco';
 import { Select, Store } from '@ngxs/store';
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { Observable } from 'rxjs';
 import { BookDto } from 'src/app/api';
 import { BookDetailsComponent } from 'src/app/common/components/book-details/book-details.component';
@@ -36,6 +39,8 @@ import { BooksState } from 'src/app/state/books/books.state';
         MatProgressBarModule,
         BookDetailsComponent,
         MatTooltipModule,
+        MatIconModule,
+        NgClass,
     ],
     templateUrl: './add-book-dialog.component.html',
     styleUrls: ['./add-book-dialog.component.scss'],
@@ -58,6 +63,9 @@ export class AddBookDialogComponent {
     ownershipChangeLoading$!: Observable<boolean>;
     $ownershipChangeLoading = toSignal(this.ownershipChangeLoading$);
 
+    doScan = false;
+    scanner: Html5Qrcode | undefined;
+
     public form = new FormGroup({
         isbn: new FormControl('', [
             Validators.required,
@@ -65,12 +73,55 @@ export class AddBookDialogComponent {
         ]),
     });
 
-    constructor(private store: Store) {}
+    constructor(private store: Store) {
+        this.searchResult$.subscribe(() => {
+            this.doScan = false;
+        });
+    }
+
+    initScanner() {
+        const randomId = Math.random().toString(36).substring(7);
+
+        if (!document.getElementById('qr-reader')) {
+            setTimeout(() => {
+                this.initScanner();
+            }, 100);
+            return;
+        }
+        document.getElementById('qr-reader')!.innerHTML =
+            '<div id="qr-reader-' + randomId + '"></div>';
+
+        this.scanner = new Html5Qrcode('qr-reader-' + randomId, {
+            formatsToSupport: [Html5QrcodeSupportedFormats.EAN_13],
+            useBarCodeDetectorIfSupported: true,
+            verbose: true,
+        });
+
+        this.scanner.start(
+            { facingMode: 'environment' },
+            { fps: 10, qrbox: { height: 150, width: 250 } },
+            (found: string) => {
+                const isbn = found.replaceAll(/\D/g, '');
+                this.scanner?.pause();
+                this.scanner!.stop().then(() => {
+                    this.store.dispatch(
+                        new BookActions.SearchBooks(isbn, false),
+                    );
+
+                    this.doScan = false;
+                });
+            },
+            () => {},
+        );
+    }
 
     search() {
         if (this.form.invalid || this.form.pristine || !this.form.value.isbn)
             return;
 
+        if (this.doScan) {
+            this.toggleScan();
+        }
         const isbn = this.form.value.isbn.replaceAll(/\D/g, '');
         this.store.dispatch(new BookActions.SearchBooks(isbn, false));
     }
@@ -92,5 +143,13 @@ export class AddBookDialogComponent {
                 hidden: hide,
             }),
         );
+    }
+
+    toggleScan() {
+        this.doScan = !this.doScan;
+        if (this.doScan) this.initScanner();
+        else if (this.scanner) this.scanner?.stop().then(() => {});
+
+        this.scanner?.resume();
     }
 }

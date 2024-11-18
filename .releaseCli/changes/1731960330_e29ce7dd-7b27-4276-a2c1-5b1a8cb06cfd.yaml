@@ -1,0 +1,7 @@
+id: e29ce7dd-7b27-4276-a2c1-5b1a8cb06cfd
+title: Implemented a rudimentary Bar Code Scanner for the web UI. This enables non-Android users to also add books by scanning their bar code.
+type: 1
+description: ""
+breaking: false
+breaking_migration_guide: ""
+timestamp: 1731960330
