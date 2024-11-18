@@ -7,7 +7,7 @@ services:
             - POSTGRES_PASSWORD=owo
             - POSTGRES_DB=mangalist
         ports:
-            - 5432:5432
+            - 15433:5432
     s3:
         image: adobe/s3mock:latest
         ports:
