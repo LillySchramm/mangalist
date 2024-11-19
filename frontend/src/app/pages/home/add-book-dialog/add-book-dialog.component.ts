@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
     FormControl,
@@ -45,7 +45,7 @@ import { BooksState } from 'src/app/state/books/books.state';
     templateUrl: './add-book-dialog.component.html',
     styleUrls: ['./add-book-dialog.component.scss'],
 })
-export class AddBookDialogComponent {
+export class AddBookDialogComponent implements OnDestroy {
     @Select(BooksState.searchLoading) searchLoading$!: Observable<boolean>;
     $searchLoading = toSignal(this.searchLoading$);
 
@@ -77,6 +77,10 @@ export class AddBookDialogComponent {
         this.searchResult$.subscribe(() => {
             this.doScan = false;
         });
+    }
+
+    ngOnDestroy(): void {
+        if (this.scanner) this.scanner?.stop().then(() => {});
     }
 
     initScanner() {
