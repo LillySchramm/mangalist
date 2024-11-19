@@ -1,0 +1,121 @@
+---
+sidebar_position: 6
+description: 'Learn how to setup Booklify in your environment'
+---
+
+# Basic Setup
+
+## Prerequisites
+
+Before you start, make sure you fullfill the [requirements](requirements).
+
+Also you should decide which version of Booklify you want to use.
+You can read more about the differences between the versions [here](versions).
+
+## Download the demo deployment
+
+Booklify comes with a demo deployment that you can use to get started.
+Just download it by pulling the repository from [GitLab](https://gitlab.eps-dev.de/Lilly/booklify-ce).
+
+```bash
+git clone https://gitlab.eps-dev.de/Lilly/booklify-ce.git
+```
+
+Inside of the repository you will find a `demo` folder.
+This folder contains a `docker-compose.yml` file that you can use to start the demo deployment.
+
+Below you will find a detailed explanation of everything you need to know to get Booklify up and running in your environment.
+
+## Setup and Configuration
+
+### The `docker-compose.yml` file
+
+This file contains everything you need to start booklify. It contains the following services:
+
+#### `backend`
+This service is the backend of Booklify. By default it is running on port `3030`.
+
+By default it is configured to use the newest development version of Booklify.
+If you want to use a specific version, you can change the `image` property to the version you want to use.
+You can find the available versions [here](versions).
+
+The configuration of the backend is done via a mounted `config.json` file. Read more about the configuration [here](#the-configconfigjson5-file).
+
+It is also important that you specify the `DATABASE_URL` environment variable.
+If this variable is not set, the container will fail to run the database migrations and will exit with an error.
+You can change the value of this variable to the database you want to use.
+You can change the value of this variable in the `.env` file.
+
+#### `frontend`
+
+This service is the frontend of Booklify. By default it is running on port `8090`.
+
+By default it is configured to use the newest development version of Booklify.
+If you want to use a specific version, you can change the `image` property to the version you want to use.
+You can find the available versions [here](versions).
+
+It is also important that you specify the `BACKEND_URL` environment variable.
+If this variable is not set, the frontend will not be able to connect to the backend.
+You can change the value of this variable in the `.env` file.
+
+#### `s3`
+
+Booklify requires an S3 compatible storage to store certain files like the book covers.
+By default the demo deployment uses the [S3Mock Server](https://github.com/adobe/S3Mock) to provide a simple S3 compatible storage.
+It works out of the box and does not require any configuration, but note that it is not suitable for production use.
+
+:::note info
+For production use you should use a real S3 compatible storage like [MinIO](https://min.io/).
+:::
+
+#### `postgres`
+
+Booklify requires a PostgreSQL database to store most of its data.
+By default the demo deployment uses a PostgreSQL database.
+It works out of the box and does not require any configuration.
+
+:::warning
+Make sure to at least change the `POSTGRES_PASSWORD` environment variable to a secure password.
+:::
+
+
+### The `.env` file
+
+This file contains environment variables that are used by the `docker-compose.yml` file.
+You can change the values of the variables to fit your environment.
+
+### The `config/config.json5` file
+
+This file contains the configuration of the backend. You can find information about all config options [here](config).
+You only need to specify the options you want to change. The rest will be filled with default values.
+
+Some important options are:
+
+- `url`: The URL of the fontend.
+- `api_url`: The URL of the backend.
+- `db.url`: The URL of the database.
+- `security.key`: The key which is used to encrypt sertain data. This key should be kept secret. Cannot be changed after the first start!
+
+:::danger
+Make sure to change the `security.key` option to a secure key. This key should be kept secret and should not be changed after the first start of the backend.
+:::
+
+
+## Start your deployment
+
+After you have configured everything, you can start the deployment by running the following command in `demo` folder:
+
+```bash
+docker compose up -d
+```
+
+This will start the deployment in the background.
+
+You can now access the frontend by opening `http://localhost:8090` in your browser.
+
+## Next Steps
+
+Now that you have a running deployment, you can read the [Advanced Setup](/docs/category/advanced-setup) guide to learn how make
+further custumize your deployment.
+You can also read the [Crawler Documentation](/docs/category/crawlers) to learn how to fetch more accurate metadata for your books.
+

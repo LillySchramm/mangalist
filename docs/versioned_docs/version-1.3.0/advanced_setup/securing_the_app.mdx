@@ -1,0 +1,63 @@
+---
+title: "Securing Booklify"
+description: "How to harden your booklify setup secure"
+---
+
+# Securing Booklify
+
+Booklify is designed to be secure by default.
+However, there are a few things you can do to harden your setup and make it even more secure.
+
+## Use HTTPS
+
+By default, Booklify runs on HTTP. This is fine for local development, but you should use HTTPS in production.
+You can use a reverse proxy like Nginx or Apache to terminate SSL and proxy requests to Booklify.
+
+Read this guide to learn how to set up a reverse proxy for Booklify: [Reverse Proxy](/docs/advanced_setup/reverse_proxy)
+
+## Use a strong value for `security.key`
+
+The `security.key` setting is used to encrypt sensitive data in the database.
+You should use a strong, random value for this setting.
+
+You can generate a random value using the following command:
+
+```bash
+openssl rand -base64 32
+```
+
+Then, set the value in your `config.json5` file:
+
+```json5
+{
+  "security": {
+    "key": "your-random-value"
+  }
+}
+```
+
+## Update the `cors` setting
+
+The `cors` setting controls which domains are allowed to make requests to your Booklify server.
+By default, it allows all domains to make requests by setting `*` as the value.
+
+You should update this setting to only allow requests from trusted domains.
+
+For example, if you have a website running on `https://example.com`, you can set the `cors` setting to only allow requests from that domain:
+
+```json5
+{
+  "cors": "https://example.com"
+}
+```
+
+## Secure your infrastructure
+
+Every system is only as secure as its weakest link. Make sure to secure your infrastructure, including your server, database, and other services.
+Typical security measures include:
+- Keeping your server and software up to date
+- Using strong, unique passwords
+- Enabling a firewall
+- Disabling unnecessary services
+- Monitoring your server for suspicious activity
+

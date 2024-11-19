@@ -1,0 +1,41 @@
+---
+sidebar_position: 2
+---
+
+# Quickstart
+
+Booklify.me provides a sample docker-compose file to get you started quickly.
+
+:::warning
+This just a demo setup, you should customize it according to your needs.
+:::
+
+:::danger
+The default settings are insecure and should not be used in production. Make sure to read the [Setup](category/setup) section.
+:::
+
+## Prerequisites
+
+Make sure your system meets the minimum requirements: [Prerequisites](setup/requirements)
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone https://gitlab.eps-dev.de/Lilly/booklify-ce.git
+```
+
+2. Change to the docker demo directory
+
+```bash
+cd booklify-ce/demo
+```
+
+3. Start the services
+
+```bash
+docker-compose up -d
+```
+
+After a few seconds, the services should be up and running. You can access the frontend at [http://localhost:8090](http://localhost:8090).

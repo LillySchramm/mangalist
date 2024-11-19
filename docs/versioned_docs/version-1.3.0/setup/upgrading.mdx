@@ -1,0 +1,36 @@
+---
+sidebar_position: 6
+description: 'How to update Booklify to the latest version.'
+---
+
+# Upgrading
+:::danger
+Before upgrading, please make sure to backup your database and files.
+This is to ensure that you can revert back to the previous version in case something goes wrong.
+
+Booklify **does not** have a built-in rollback feature.
+:::
+
+Boooklify is updated regularly with new features, bug fixes, and security patches. To update Booklify to the latest version, follow the steps below.
+
+## Step 1: Download the latest version
+
+You can find the latest version of Booklify on the [Release Page](https://gitlab.eps-dev.de/Lilly/booklify-ce/-/releases)
+
+Then download the latest version of Booklify using: `docker pull registry.gitlab.eps-dev.de/lilly/booklify-ce:v<version>`
+Replace `<version>` with the latest version number.
+
+Also make sure to update the `docker-compose.yml` file to use the new version.
+
+If you use the development version, you can just use `docker compose pull` to update all images.
+
+## Step 2: Start the new version
+
+After downloading the latest version, you can just start the new version using `docker-compose up -d`.
+
+Booklify will automatically update the database and files to the latest version.
+
+## Step 3: Verify the update
+
+After updating, you should verify that the update was successful. You can do this by checking the logs of the Booklify container using `docker compose logs backend`.
+

@@ -1,0 +1,37 @@
+---
+title: ISBNdb
+description: Search for books using ISBNdb
+---
+
+# ISBNdb
+
+## Overview
+
+**Usable by default:** No\
+**Crawls metadata:** Yes\
+**Crawls covers:** Yes\
+**Overall quality:** Good, can get a bit worse for more obscure books\
+**Overall quantity:** Good\
+**Longrunning:** No
+
+## Description
+
+ISBNdb is a web service for searching books using their ISBN.
+It provides a simple API to access the data.
+This source is used to get metadata and covers for books.
+
+ISBNdb is a paid service, the cheapest plan is their `Academic` plan $7.50/month for 2000 daily requests.
+They don't validate wheter you are eligable for the academic plan, so you can use it even if you are technically not eligible.
+This should be more than enough for most users.
+
+## Configuration
+
+After you have signed up for ISBNdb, you will get an API key. You can then add it to your `config.json5` like this:
+
+```json5
+"isbndb": {
+    "key": "<your key>"
+}
+```
+
+Once you have added the key, ISBNdb will also be used to get metadata and covers for books.

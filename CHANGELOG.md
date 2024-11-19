@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.3.0  - 19.11.2024
+
+### Added
+
+- Added 'Recent Additions' Filter. 
+- Added AI grouping of books. 
+- Implemented a rudimentary Bar Code Scanner for the web UI. This enables non-Android users to also add books by scanning their bar code. 
+- Recently added books are now displayed as 'new' for 45 days after being added. 
+- The public collection URL is now '/@\<username>'. 
+### Changed
+
+- The companion app now targets Android 14+. 
+### Removed
+
+- The '/u/\<username>' syntax for collection URLs has been removed. Old links will be automagically redirected to the new schema. 
+### Fixed
+
+- Fixed a few typos. 
+
+
 ## v1.2.4  - 16.9.2024
 
 ### Changed

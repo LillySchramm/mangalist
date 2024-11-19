@@ -1,0 +1,68 @@
+---
+title: "Reverse Proxy"
+description: "How to set up a reverse proxy for Booklify"
+---
+
+# Reverse Proxy
+
+Booklify itself cannot serve its content over HTTPS.
+To do so, you need to set up a reverse proxy.
+This guide will show you how to set up a reverse proxy using Nginx.
+
+:::warning
+Serving Booklify over HTTP is not recommended as it will expose your data to potential attackers.
+:::
+
+## How to
+
+Booklify does not require any special configuration to work behind a reverse proxy.
+You can just set up the reverse proxy and point it to the Booklify frontend and backend.
+
+Impotant things to note are:
+- Booklify is not designed or tested to work with path-based routing.
+- You should avoid caching the Booklify frontend as it may cause issues when updating the app.
+
+## Nginx Example
+
+Here is an example of how to set up a reverse proxy using Nginx:
+
+```nginx
+http {
+    upstream backend {
+        server localhost:3000;
+    }
+
+    upstream frontend {
+        server localhost:3001;
+    }
+
+    server {
+        listen      443 ssl;
+        server_name api.example.com;
+
+        ssl_certificate        /etc/ssl/certs/server.crt;
+        ssl_certificate_key    /etc/ssl/certs/server.key;
+        ssl_client_certificate /etc/ssl/certs/ca.crt;
+        ssl_verify_client      optional;
+
+        location / {
+            proxy_pass http://backend;
+
+        }
+
+    server {
+        listen      443 ssl;
+        server_name example.com;
+
+        ssl_certificate        /etc/ssl/certs/server.crt;
+        ssl_certificate_key    /etc/ssl/certs/server.key;
+        ssl_client_certificate /etc/ssl/certs/ca.crt;
+        ssl_verify_client      optional;
+
+        location / {
+            proxy_pass http://frontend;
+        }
+    }
+}
+```
+

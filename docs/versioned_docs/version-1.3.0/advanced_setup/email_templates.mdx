@@ -1,0 +1,107 @@
+---
+title: "E-Mail Templates"
+description: "How to customize the email templates used by booklify"
+---
+
+# E-Mail Templates
+
+Booklify uses Templates for sending e-mails to users. You can customize these templates to match your preferences.
+
+## Customizing Templates
+
+To customize the templates, you need to overwrite the corresponding `.html` files in the `assets/mail` directory of the backend.
+All default templates can be found [here](https://gitlab.eps-dev.de/Lilly/booklify-ce/-/tree/v2/backend/assets/mail).
+
+### Example in Docker
+
+If you are using the Docker setup, you can copy the templates to the `assets/mail` directory of the backend by adding the following lines to your `docker-compose.yml`:
+
+```yaml
+services:
+  backend:
+    volumes:
+      - ./path/to/your/templates:/app/assets/mail
+```
+
+This will overwrite the default templates with your custom ones.
+
+If you only want to customize a single template, you can also only overwrite this one:
+
+```yaml
+services:
+  backend:
+    volumes:
+      - ./path/to/your/template.html:/app/assets/mail/template.html
+```
+
+
+## Variables
+
+The templates use variables to insert dynamic content. All variables are enclosed in double curly braces eg. `{{variable}}`.
+
+All templates have their own set of variables. The only exception is the `VERSION` variable, which is available in all templates.
+
+## Available Templates
+
+### `BAN.html`
+
+This template is used when a user is banned.
+
+#### Variables
+
+- `USERNAME`: The username of the banned user.
+- `EMAIL`: The mail the user can apeal to.
+
+### `CHANGELOG.html`
+
+This template is used to send the changelog to users.
+
+#### Variables
+
+- `USERNAME`: The username of the user.
+- `CHANGELOG_HTML`: The changelogs content in HTML format.
+
+### `FIRST_STEPS.html`
+
+This template is used to when a user confirms their email address.
+
+#### Variables
+
+- `USERNAME`: The username of the user.
+
+### `MOD_INFO.html`
+
+This template is used to send information about a moderation action to a user.
+
+#### Variables
+
+- `TARGET`: The username of the targeted user.
+- `SENDER`: The username of the sender.
+- `CATEGORY`: The category of the report.
+- `MESSAGE`: The user povided message.
+- `DISMISS_URL`: The URL to dismiss the report.
+- `BAN_URL`: The URL to ban the user.
+
+### `PASSWORD_RESET.html`
+
+This template is used to send a password reset link to a user.
+
+#### Variables
+
+- `USERNAME`: The username of the user.
+- `HOST`: The base URL of the frontend.
+- `ID`: The ID of the password reset token.
+- `USER_ID`: The ID of the user.
+- `TOKEN`: The password reset token.
+
+### `VERIFICATION.html`
+
+This template is used to send a verification link to a user.
+
+#### Variables
+
+- `USERNAME`: The username of the user.
+- `HOST`: The base URL of the frontend.
+- `ID`: The ID of the verification key.
+- `USER_ID`: The ID of the user.
+- `KEY`: The verification key.

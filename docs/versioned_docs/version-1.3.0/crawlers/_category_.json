@@ -1,0 +1,8 @@
+{
+    "label": "Crawlers",
+    "position": 10,
+    "link": {
+        "type": "generated-index",
+        "description": "Booklify uses multiple crawlers to fetch book data from various sources. This section provides an overview of the crawlers and their configuration."
+    }
+}

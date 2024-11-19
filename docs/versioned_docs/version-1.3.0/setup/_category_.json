@@ -1,0 +1,8 @@
+{
+    "label": "Setup",
+    "position": 4,
+    "link": {
+        "type": "generated-index",
+        "description": "Setup your own Booklify.me instance"
+    }
+}

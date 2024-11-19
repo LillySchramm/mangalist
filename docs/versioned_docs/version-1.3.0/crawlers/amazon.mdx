@@ -1,0 +1,47 @@
+---
+title: Amazon
+description: Search for books using Amazon
+---
+
+# Amazon
+
+## Overview
+
+**Usable by default:** No\
+**Crawls metadata:** Yes\
+**Crawls covers:** No\
+**Overall quality:** Almost perfect\
+**Overall quantity:** Almost perfect\
+**Longrunning:** Yes
+
+## Description
+
+Amazon started as a bookstore and has since grown into a massive online retailer.
+It still has a huge selection of books, and is a great source for accurate metadata.
+
+Problem is that that Amazon restricts access to their API, and you need to be a registered developer to use it.
+And even then, you have to pay buissness fees to use it. This makes it hard to use Amazon as a source for metadata.
+Bookly has a workaround for this, as it can scrape Amazon's website for metadata.
+
+Amazon is very good at detecting and blocking bots and scrapers, so it is not not viable to directly scrape Amazon's website.
+
+Instead Bookly uses a service called [Geonode](https://geonode.com/) to scrape Amazon's website.
+Geonode is a service that provides a scraping API which can be used to scrape websites
+like Amazon by using their residential proxies.
+
+This means that you can use Amazon as a source for metadata, but you will have to pay for the Geonode service.
+
+Due to the way Geonode works, it may take a while to get the metadata for a book, as it has to go through the residential proxies.
+This is why Amazon is marked as longrunning and will only be executed whenever the `doLongruning` task is executed.
+
+## Configuration
+
+After you have signed up for Geonode, you will get an API key. You can add this key to the `config.json` file.
+```json5
+"geonode": {
+    "username": "your-username",
+    "password": "your-password",
+}
+```
+
+Once you have added the key, Amazon will be used as a source for metadata whenever the `doLongrunning` task is executed.
