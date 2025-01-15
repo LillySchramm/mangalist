@@ -907,9 +907,7 @@
     tslib "2.7.0"
 
 "@nestjs/schedule@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/schedule/-/schedule-4.0.0.tgz#522fa0c79a2b44a66aab16a46bdf4c11ae73f3c3"
-  integrity sha512-zz4h54m/F/1qyQKvMJCRphmuwGqJltDAkFxUXCVqJBXEs5kbPt93Pza3heCQOcMH22MZNhGlc9DmDMLXVHmgVQ==
+  version "4.1.2"
   dependencies:
     cron "3.1.3"
     uuid "9.0.1"
