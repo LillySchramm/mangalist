@@ -6219,9 +6219,7 @@ statuses@2.0.1:
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
 
 stopword@^3.0.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/stopword/-/stopword-3.1.1.tgz#ce3cf748cafd962904902dd050f6f16ca42d3ec0"
-  integrity sha512-TzJdIuzqJNo6IaFvrF3fYqu08uJ/0VMsdABl6d6+dt6daD7QeHJnMt9sPqhVIxEmNaaeE8+eandVPJv9RhAL5Q==
+  version "3.1.4"
 
 stream-chain@^2.2.5:
   version "2.2.5"
