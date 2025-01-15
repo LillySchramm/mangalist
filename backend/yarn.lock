@@ -1072,9 +1072,7 @@
     localforage "^1.8.1"
 
 "@sentry/node@^7.101.1":
-  version "7.120.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-7.120.0.tgz#260828da2e7e3287d806060c5bc63f34502c3693"
-  integrity sha512-GAyuNd8WUznsiOyDq2QUwR/aVnMmItUc4tgZQxhH1R+n4Adx3cAhnpq3zEuzsIAC5+/7ut+4Q4B3akh6SDZd4w==
+  version "7.120.3"
   dependencies:
     "@sentry-internal/tracing" "7.120.0"
     "@sentry/core" "7.120.0"
