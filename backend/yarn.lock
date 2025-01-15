@@ -5128,9 +5128,7 @@ minimist@^1.2.5, minimist@^1.2.6:
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
 minio@^8.0.0:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/minio/-/minio-8.0.2.tgz#ea1703ff52dcf610ba6d4e2ece8c5627f664d581"
-  integrity sha512-7ipWbtgzzboctf+McK+2cXwCrNOhuboTA/O1g9iWa0gH8R4GkeyFWwk12aVDEHdzjPiG8wxnjwfHS7pgraKuHw==
+  version "8.0.3"
   dependencies:
     async "^3.2.4"
     block-stream2 "^2.1.0"
