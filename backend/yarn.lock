@@ -1426,9 +1426,7 @@
     "@types/nodemailer" "*"
 
 "@types/nodemailer@*", "@types/nodemailer@^6.4.9":
-  version "6.4.16"
-  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.16.tgz#db006abcb1e1c8e6ea2fb53b27fefec3c03eaa6c"
-  integrity sha512-uz6hN6Pp0upXMcilM61CoKyjT7sskBoOWpptkjjJp8jIMlTdc3xG01U7proKkXzruMS4hS0zqtHNkNPFB20rKQ==
+  version "6.4.17"
   dependencies:
     "@types/node" "*"
 
