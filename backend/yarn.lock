@@ -926,9 +926,7 @@
     pluralize "8.0.0"
 
 "@nestjs/swagger@^8.0.0":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-8.0.1.tgz#902ffd0fd9f3f32a4ad0fc7526a6df87fb5a87cd"
-  integrity sha512-kW0dlsZXXWQgSSJHvk0fzg6kHvLcJ6trpbfvj5UN8DWIyCdCS/MGNshDE3P82xxKcg/pLZH7z41qYpFiawkGvQ==
+  version "8.1.1"
   dependencies:
     "@microsoft/tsdoc" "^0.15.0"
     "@nestjs/mapped-types" "2.0.5"
