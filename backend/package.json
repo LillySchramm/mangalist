@@ -21,7 +21,7 @@
     "licenses": "license-checker-rseidelsohn --production --onlyAllow=\"MIT;BSD-3-Clause;Apache-2.0;ISC;Python-2.0;UNLICENSED;CC-BY-4.0;BSD-2-Clause;Apache*;0BSD\" --json --out=\"./licenses.json\" --customPath customFormat.json"
   },
   "dependencies": {
-    "@nestjs/cache-manager": "^2.1.1",
+    "@nestjs/cache-manager": "^3.0.0",
     "@nestjs/common": "^10.4.8",
     "@nestjs/core": "^10.4.8",
     "@nestjs/jwt": "^10.2.0",
